@@ -56,6 +56,7 @@ meeting-management/
 │   │   ├── test_hooks.py                   # Hook test script
 │   │   ├── hooks.json                      # Hook configuration file
 │   │   └── README.md                       # Hook documentation
+│   ├── settings.json                    # Project hook settings
 │   └── docs/
 │       └── meeting-records/           # Meeting records storage
 │           ├── 2026-03-15-001-api-design.md      # Transcript
@@ -63,6 +64,7 @@ meeting-management/
 │           ├── 2026-03-15-002-database.md
 │           ├── 2026-03-15-002-database-summary.md
 │           └── .sequence                          # Sequence number tracker
+├── setup.py                             # Installation script
 └── README.md                           # This file
 ```
 
@@ -114,27 +116,28 @@ Rule that automatically adds meeting-recorder to all Agent Teams.
 
 ## Installation
 
-### Automated Installation (Recommended)
+### Quick Start (Recommended)
 
-Use the `setup.py` script for automatic installation:
+This plugin includes a pre-configured `.claude/settings.json` file. Simply:
+
+1. Clone this repository to your project
+2. Open the project in Claude Code
+3. The hooks are automatically loaded from `.claude/settings.json`
 
 ```bash
-# Check installation status
-python setup.py status
+# Clone the plugin
+git clone https://github.com/yarang/meeting-management.git
+cd meeting-management
 
-# Install (adds hooks to Claude Code settings.json)
-python setup.py install
-
-# Uninstall
-python setup.py uninstall
-
-# Restore original settings
-python setup.py restore
+# Copy to your project (optional)
+cp -r .claude /path/to/your/project/
 ```
 
-### Manual Installation
+### Manual Configuration
 
-Add the following to `~/.claude/settings.json`:
+If you prefer manual configuration, add the following to your project's `.claude/settings.json`:
+
+**File**: `<your-project>/.claude/settings.json`
 
 ```json
 {
@@ -176,9 +179,19 @@ Add the following to `~/.claude/settings.json`:
 }
 ```
 
+### Global Installation (Optional)
+
+If you want to use this plugin across all projects, run:
+
+```bash
+python setup.py install
+```
+
+This adds hooks to your global `~/.claude/settings.json`.
+
 ### After Installation
 
-Restart Claude Code. The meeting-recorder will be automatically added to all new Agent Teams.
+The hooks will be automatically loaded when you open the project in Claude Code. The meeting-recorder will be automatically added to all new Agent Teams created in this project.
 
 ## Usage
 

@@ -56,6 +56,7 @@ meeting-management/
 │   │   ├── test_hooks.py                   # Hook 테스트 스크립트
 │   │   ├── hooks.json                      # Hook 설정 파일
 │   │   └── README.md                       # Hook 문서
+│   ├── settings.json                    # 프로젝트 Hook 설정
 │   └── docs/
 │       └── meeting-records/           # 회의 기록 저장소
 │           ├── 2026-03-15-001-api-design.md      # 녹취록
@@ -63,6 +64,7 @@ meeting-management/
 │           ├── 2026-03-15-002-database.md
 │           ├── 2026-03-15-002-database-summary.md
 │           └── .sequence                          # 일련 번호 추적
+├── setup.py                             # 설치 스크립트
 └── README.md                           # 이 파일
 ```
 
@@ -114,27 +116,28 @@ meeting-management/
 
 ## Installation
 
-### 자동 설치 (권장)
+### 빠른 시작 (권장)
 
-`setup.py` 스크립트를 사용하여 자동으로 설치합니다:
+이 플러그인은 미리 구성된 `.claude/settings.json` 파일을 포함합니다. 다음 단계로 설치하세요:
+
+1. 이 저장소를 프로젝트에 클론합니다
+2. Claude Code에서 프로젝트를 엽니다
+3. `.claude/settings.json`에서 hooks가 자동으로 로드됩니다
 
 ```bash
-# 설치 상태 확인
-python setup.py status
+# 플러그인 클론
+git clone https://github.com/yarang/meeting-management.git
+cd meeting-management
 
-# 설치 (Claude Code settings.json에 hooks 추가)
-python setup.py install
-
-# 제거
-python setup.py uninstall
-
-# 원래 설정 복원
-python setup.py restore
+# 프로젝트로 복사 (선택사항)
+cp -r .claude /path/to/your/project/
 ```
 
-### 수동 설치
+### 수동 설정
 
-`~/.claude/settings.json`에 다음을 추가:
+수동으로 구성하려면 프로젝트의 `.claude/settings.json`에 다음을 추가하세요:
+
+**파일**: `<your-project>/.claude/settings.json`
 
 ```json
 {
@@ -176,9 +179,15 @@ python setup.py restore
 }
 ```
 
-### 설치 완료 후
+### 전역 설치 (선택사항)
 
-Claude Code를 재시작하면 모든 새로운 Agent Team에 meeting-recorder가 자동으로 추가됩니다.
+모든 프로젝트에서 이 플러그인을 사용하려면 다음을 실행하세요:
+
+```bash
+python setup.py install
+```
+
+전역 `~/.claude/settings.json`에 hooks가 추가됩니다.
 
 ## Usage
 
