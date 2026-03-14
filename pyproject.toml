@@ -1,0 +1,61 @@
+[project]
+name = "meeting-management"
+version = "1.0.0"
+description = "Claude Code Meeting Management Plugin - Automatic meeting recording for Agent Teams"
+authors = [
+    {name = "Claude Code Community"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+keywords = ["claude-code", "meeting", "recording", "agent", "team"]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "pyyaml>=6.0",
+    "python-dateutil>=2.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=23.0",
+    "ruff>=0.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/claude-code-meeting/meeting-management"
+Repository = "https://github.com/claude-code-meeting/meeting-management"
+Documentation = "https://github.com/claude-code-meeting/meeting-management/blob/main/README.md"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = []
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "W", "I", "N"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = [".claude/hooks"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=. --cov-report=term-missing"

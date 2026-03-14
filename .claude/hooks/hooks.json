@@ -1,0 +1,22 @@
+{
+  "hooks": [
+    {
+      "event": "SubagentStart",
+      "hook": "command",
+      "command": "python3 .claude/hooks/team-create-add-recorder.py",
+      "description": "Add meeting-recorder agent to new teams"
+    },
+    {
+      "event": "Notification",
+      "hook": "command",
+      "command": "python3 .claude/hooks/record-message.py",
+      "description": "Record team messages to meeting transcript"
+    },
+    {
+      "event": "SubagentStop",
+      "hook": "command",
+      "command": "python3 .claude/hooks/generate-meeting-summary.py",
+      "description": "Generate meeting summary on team shutdown"
+    }
+  ]
+}
